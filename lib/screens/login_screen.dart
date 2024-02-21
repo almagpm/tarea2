@@ -88,8 +88,20 @@ class _LoginScreenState extends State<LoginScreen> {
                         });
                       }),
                       SignInButton(Buttons.Facebook, onPressed: () {}),
-                      SignInButton(Buttons.GitHub, onPressed: () {})
-                    ],
+                      SignInButton(Buttons.GitHub, onPressed: () {}),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.purple, // Color morado
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30.0), // Bordes redondeados
+                          ),
+                        ),
+                        child: Text('Registrarse'),
+                        onPressed: () {
+                          Navigator.pushNamed(context, "/signup");
+                        },
+                      ),
+                                          ],
                   ),
                 )),
             isLoading

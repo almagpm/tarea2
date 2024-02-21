@@ -1,4 +1,7 @@
+
+import 'package:day_night_switcher/day_night_switcher.dart';
 import 'package:flutter/material.dart';
+import 'package:mi_app2/settings/app_value_notifier.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
@@ -26,6 +29,14 @@ class DashboardScreen extends StatelessWidget {
             trailing: Icon(Icons.chevron_right),
           ),
           ListTile(
+            leading: const Icon(Icons.shop),
+            title: const Text('Mi despensa'),
+            subtitle: const Text('Relacion de productos que no voy a usar'),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => Navigator.pushNamed(context, '/despensa'),
+
+          ),
+          ListTile(
             leading: const Icon(Icons.close),
             title: const Text('Salir'),
             subtitle: const Text('Vamo a salir.'),
@@ -33,6 +44,13 @@ class DashboardScreen extends StatelessWidget {
             onTap: () {
               Navigator.pop(context);
               Navigator.pop(context);
+            },
+          ),
+          DayNightSwitcher(
+            isDarkModeEnabled: AppValueNotifier.banTheme.value,
+            onStateChanged: (isDarkModeEnabled) {
+                AppValueNotifier.banTheme.value = isDarkModeEnabled;
+  
             },
           ),
         ],

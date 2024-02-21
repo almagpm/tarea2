@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mi_app2/screens/dashboard_screen.dart';
+import 'package:mi_app2/screens/despensa_screen.dart';
+import 'package:mi_app2/screens/signup_screen.dart';
 import 'package:mi_app2/screens/splash_screen.dart';
+import 'package:mi_app2/settings/app_value_notifier.dart';
+import 'package:mi_app2/settings/theme.dart';
 
 void main() => runApp(MyApp());
 
@@ -9,15 +13,24 @@ class MyApp extends StatelessWidget{
 
   @override
   Widget build(BuildContext context){
-    return MaterialApp(
-      home: SplashCreen(),
-      routes: {
-        "/dash" : (BuildContext context) => DashboardScreen(),
+    return ValueListenableBuilder(
+      valueListenable: AppValueNotifier.banTheme,
+      builder: (context, value, child) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: value ? ThemeApp.darkTheme(context) : ThemeApp.lightTheme(context),
+          home: SplashCreen(),
+          routes: {
+            "/dash" : (BuildContext context) => DashboardScreen(),
+            "/signup" : (BuildContext context) => SignUp(),
+            "/despensa" : (BuildContext context) => DespensaScreen(),
+          },
+        );
       },
     );
-
   }
 }
+
 
 
 /*class MyApp extends StatefulWidget {
